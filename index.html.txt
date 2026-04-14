@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PANGEO LLC — Strategy & Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --charcoal: #2B2B2B;
+    --charcoal-deep: #1A1A1A;
+    --platinum: #E5E4E2;
+    --platinum-light: #F4F4F3;
+    --gold: #A89060;
+    --gold-light: #C4AE82;
+    --mid-gray: #6B6B6B;
+    --white: #FFFFFF;
+    --off-white: #FAF9F7;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--off-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 60px;
+    background: rgba(26,26,26,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(168,144,96,0.25);
+    transition: padding 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 9px 22px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: var(--charcoal-deep); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--charcoal-deep);
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(168,144,96,0.15), transparent);
+  }
+
+  .hero-bg-line:nth-child(1) { left: 20%; }
+  .hero-bg-line:nth-child(2) { left: 50%; background: linear-gradient(to bottom, transparent, rgba(168,144,96,0.08), transparent); }
+  .hero-bg-line:nth-child(3) { left: 80%; }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    padding-top: 120px;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-eyebrow-line {
+    width: 48px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-eyebrow span {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.8rem, 8vw, 7.5rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    animation: fadeUp 1s 0.15s ease both;
+  }
+
+  .hero-title strong {
+    font-weight: 600;
+    color: var(--white);
+    display: block;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    max-width: 540px;
+    margin-top: 32px;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero-actions {
+    margin-top: 52px;
+    display: flex; gap: 20px; align-items: center;
+    animation: fadeUp 1s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--charcoal-deep);
+    padding: 15px 38px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.3s;
+  }
+
+  .btn-secondary:hover { color: var(--white); }
+
+  .btn-arrow {
+    width: 28px; height: 1px;
+    background: currentColor;
+    position: relative;
+    transition: width 0.3s;
+  }
+
+  .btn-secondary:hover .btn-arrow { width: 40px; }
+
+  .hero-stats {
+    margin-top: 80px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; gap: 64px;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+
+  .hero-stat-item {}
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 110px 0; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .section-label {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .section-label-line { width: 36px; height: 1px; background: var(--gold); }
+
+  .section-label span {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--charcoal);
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--mid-gray);
+    margin-top: 28px;
+  }
+
+  .about-text p + p { margin-top: 20px; }
+
+  .values-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 10px;
+  }
+
+  .value-card {
+    background: var(--charcoal);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .value-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .value-card:hover::before { transform: scaleX(1); }
+  .value-card:hover { background: #323232; }
+
+  .value-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: rgba(168,144,96,0.3);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .value-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .value-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--off-white); }
+
+  .services-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+
+  .services-intro-text {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--mid-gray);
+    line-height: 1.8;
+    margin-top: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+    z-index: 1;
+  }
+
+  .service-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--platinum);
+    line-height: 1;
+    position: absolute;
+    top: 28px; right: 32px;
+  }
+
+  .service-icon {
+    width: 44px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 28px;
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover .service-icon { width: 64px; }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--mid-gray);
+    line-height: 1.75;
+  }
+
+  .service-tags {
+    margin-top: 28px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+
+  .service-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--gold);
+    border: 1px solid rgba(168,144,96,0.35);
+    padding: 5px 12px;
+  }
+
+  /* ── APPROACH ── */
+  #approach { background: var(--charcoal-deep); }
+
+  #approach .section-title { color: var(--white); }
+
+  .approach-desc {
+    max-width: 560px;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+    margin-top: 20px;
+  }
+
+  .approach-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .approach-step {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 48px 36px;
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .approach-step:hover {
+    background: rgba(168,144,96,0.06);
+    border-color: rgba(168,144,96,0.25);
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: rgba(168,144,96,0.15);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+  }
+
+  /* ── WHY PANGEO ── */
+  #why { background: var(--platinum-light); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    margin-top: 60px;
+  }
+
+  .why-item {
+    padding: 40px 32px;
+    background: var(--white);
+    border-top: 2px solid var(--gold);
+    transition: transform 0.3s ease;
+  }
+
+  .why-item:hover { transform: translateY(-4px); }
+
+  .why-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+
+  .why-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--mid-gray);
+    line-height: 1.75;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--charcoal); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  #contact .section-title { color: var(--white); }
+
+  .contact-tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    margin-top: 20px;
+  }
+
+  .contact-info { margin-top: 48px; }
+
+  .contact-info-item {
+    display: flex; gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .contact-info-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    min-width: 90px;
+    padding-top: 2px;
+  }
+
+  .contact-info-value {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-group label {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 13px 16px;
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+    background: rgba(168,144,96,0.06);
+  }
+
+  .form-group textarea { min-height: 110px; resize: vertical; }
+
+  .form-group select option { background: var(--charcoal); color: var(--white); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .btn-submit {
+    background: var(--gold);
+    color: var(--charcoal-deep);
+    border: none;
+    padding: 15px 38px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    align-self: flex-start;
+    margin-top: 8px;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal-deep);
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(168,144,96,0.2);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  .footer-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">PANGEO<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#why">Why Us</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact Us</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-line"></div>
+  <div class="hero-bg-line"></div>
+  <div class="hero-bg-line"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Dubai, UAE · Strategy & Advisory</span>
+    </div>
+    <h1 class="hero-title">
+      Where Strategy<br/>
+      Meets <em>Precision.</em>
+    </h1>
+    <p class="hero-sub">
+      PANGEO LLC is a premier management consultancy delivering transformative strategic and financial advisory to the region's most consequential organisations.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Our Services</a>
+      <a href="#about" class="btn-secondary">
+        <span class="btn-arrow"></span>
+        Learn More
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">Core Disciplines</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">UAE</div>
+        <div class="hero-stat-label">Headquartered</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">MENA</div>
+        <div class="hero-stat-label">Regional Focus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label reveal">
+          <div class="section-label-line"></div>
+          <span>Who We Are</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">A New Standard in<br/><em>Strategic Advisory</em></h2>
+        <div class="about-text reveal reveal-delay-2">
+          <p>PANGEO LLC is a premier management consultancy headquartered in Dubai, UAE, purpose-built to deliver transformative strategic and financial advisory to the region's most ambitious organisations.</p>
+          <p>Modelled on the gold standard of global consulting excellence, PANGEO combines deep analytical rigour with intimate knowledge of the Gulf and broader MENA landscape.</p>
+          <p>We partner with the leadership of large corporates and conglomerates to navigate complexity, unlock value, and build enduring competitive advantage.</p>
+        </div>
+      </div>
+      <div class="values-grid reveal reveal-delay-2">
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <div class="value-title">Rigour</div>
+          <div class="value-desc">Structured analytical frameworks underpinned by global best practices.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <div class="value-title">Independence</div>
+          <div class="value-desc">Objective, unconflicted advice focused entirely on client outcomes.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <div class="value-title">Precision</div>
+          <div class="value-desc">Solutions tailored to context, not templated from playbooks.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">04</div>
+          <div class="value-title">Results</div>
+          <div class="value-desc">Success measured solely by the tangible value we create.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-intro">
+      <div>
+        <div class="section-label reveal">
+          <div class="section-label-line"></div>
+          <span>What We Do</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">Advisory Services<br/><em>Built to Perform</em></h2>
+      </div>
+      <p class="services-intro-text reveal reveal-delay-2">An integrated suite of high-impact advisory services, each grounded in proprietary frameworks, sector expertise, and a relentless focus on measurable outcomes.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-card-num">01</div>
+        <div class="service-icon"></div>
+        <div class="service-name">Corporate Strategy</div>
+        <p class="service-desc">We work alongside executive leadership to define long-term competitive positioning, portfolio strategy, and growth roadmaps tailored to the complexities of the regional market.</p>
+        <div class="service-tags">
+          <span class="service-tag">Growth Strategy</span>
+          <span class="service-tag">Portfolio Review</span>
+          <span class="service-tag">Competitive Positioning</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-num">02</div>
+        <div class="service-icon"></div>
+        <div class="service-name">M&A Advisory</div>
+        <p class="service-desc">From target identification and due diligence to deal structuring and post-merger integration, PANGEO provides end-to-end support across the full M&A lifecycle.</p>
+        <div class="service-tags">
+          <span class="service-tag">Due Diligence</span>
+          <span class="service-tag">Deal Structuring</span>
+          <span class="service-tag">PMI</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-num">03</div>
+        <div class="service-icon"></div>
+        <div class="service-name">Financial Restructuring</div>
+        <p class="service-desc">We advise on financial reorganisation, capital structure optimisation, and turnaround strategies — enabling organisations to emerge stronger and more resilient.</p>
+        <div class="service-tags">
+          <span class="service-tag">Capital Structure</span>
+          <span class="service-tag">Turnaround</span>
+          <span class="service-tag">Debt Advisory</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-card-num">04</div>
+        <div class="service-icon"></div>
+        <div class="service-name">Investment Advisory</div>
+        <p class="service-desc">Our investment advisory practice delivers rigorous market analysis, opportunity assessment, and strategic recommendations to guide high-stakes capital allocation decisions.</p>
+        <div class="service-tags">
+          <span class="service-tag">Market Analysis</span>
+          <span class="service-tag">Capital Allocation</span>
+          <span class="service-tag">Investment Thesis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span>How We Work</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Our Three-Phase<br/><em>Engagement Model</em></h2>
+    <p class="approach-desc reveal reveal-delay-2">At PANGEO, we reject the one-size-fits-all model. Every engagement begins with a thorough diagnostic, followed by co-created solutions and hands-on execution support.</p>
+    <div class="approach-steps">
+      <div class="approach-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Diagnose</div>
+        <p class="step-desc">A deep, structured diagnostic of the client's strategic position, competitive context, financial profile, and organisational capabilities to identify the critical questions that matter most.</p>
+      </div>
+      <div class="approach-step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-title">Design</div>
+        <p class="step-desc">Co-creation of bespoke strategic solutions and implementation frameworks with the client — ensuring both analytical integrity and operational feasibility from the outset.</p>
+      </div>
+      <div class="approach-step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-title">Deliver</div>
+        <p class="step-desc">Hands-on execution support, milestone monitoring, and proactive course-correction to ensure strategies translate into measurable, sustainable results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PANGEO -->
+<section id="why">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span>The PANGEO Difference</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Why Leading Organisations<br/><em>Choose PANGEO</em></h2>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-title">Senior-Led Engagements</div>
+        <p class="why-desc">Every client receives direct access to experienced principals — not junior analysts. Senior judgment on every engagement, from kickoff to close.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-title">MENA-Native Insight</div>
+        <p class="why-desc">Deep knowledge of Gulf market dynamics, regulatory environment, and business culture that global firms cannot replicate from afar.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-title">Rigorous Methodology</div>
+        <p class="why-desc">Structured analytical frameworks built on global best practices, applied with the precision and discretion that complex situations demand.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-title">Independent Perspective</div>
+        <p class="why-desc">Objective, unconflicted advice with no product to sell and no agenda beyond our client's success. Our interests are perfectly aligned.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-title">Results Orientation</div>
+        <p class="why-desc">Our reputation is built on outcomes, not presentations. We measure success solely by the tangible value delivered to our clients.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <div class="why-title">Bespoke Solutions</div>
+        <p class="why-desc">No templated deliverables. Every engagement is built from the ground up to address the unique strategic context of each client.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label reveal">
+          <div class="section-label-line"></div>
+          <span>Get In Touch</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">Begin the<br/><em>Conversation</em></h2>
+        <p class="contact-tagline reveal reveal-delay-2">We work with a select number of clients at any one time to ensure the quality of engagement our work demands. We welcome enquiries from organisations with ambitious strategic objectives.</p>
+        <div class="contact-info reveal reveal-delay-3">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Location</span>
+            <span class="contact-info-value">Dubai, United Arab Emirates</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span class="contact-info-value">info@pangeollc.com</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Coverage</span>
+            <span class="contact-info-value">UAE · GCC · Wider MENA Region</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-2">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Your first name" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Your last name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Organisation</label>
+          <input type="text" placeholder="Company or institution" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Area of Interest</label>
+          <select>
+            <option value="" disabled selected>Select a service</option>
+            <option>Corporate Strategy</option>
+            <option>M&amp;A Advisory</option>
+            <option>Financial Restructuring</option>
+            <option>Investment Advisory</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Briefly describe your situation or enquiry…"></textarea>
+        </div>
+        <button class="btn-submit">Submit Enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">PANGEO<span>.</span> LLC</div>
+  <span class="footer-copy">© 2025 PANGEO LLC. All Rights Reserved. Dubai, UAE.</span>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.padding = '14px 60px';
+    } else {
+      nav.style.padding = '22px 60px';
+    }
+  });
+</script>
+</body>
+</html>
